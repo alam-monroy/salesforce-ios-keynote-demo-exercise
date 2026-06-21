@@ -1,0 +1,12 @@
+{
+    "configName": "WTNYC",
+    "language": "en",
+    "contacts": [
+        {
+            "id": 1,
+            "name": "Canada Goose",
+            "avatar": "https://ios-wrapper-test-kk-de916285ba09.herokuapp.com/resources/phone/WTNYC-Apr-2026/Canada-Goose-logo.png",
+            "imageURL": "https://ios-wrapper-test-kk-de916285ba09.herokuapp.com/resources/phone/WTNYC-Apr-2026/Contact-BG.png"
+        }
+    ]
+}
