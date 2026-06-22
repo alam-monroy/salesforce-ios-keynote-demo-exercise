@@ -133,6 +133,23 @@
         }
       }
     },
+    "Current version: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current version: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version actuelle : %@"
+          }
+        }
+      }
+    },
     "Edit" : {
       "localizations" : {
         "en" : {
@@ -419,6 +436,23 @@
         }
       }
     },
+    "This demo requires iOS 26 or later." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This demo requires iOS 26 or later."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette démo nécessite iOS 26 ou version ultérieure."
+          }
+        }
+      }
+    },
     "Thursday" : {
       "localizations" : {
         "en" : {
@@ -431,6 +465,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeudi"
+          }
+        }
+      }
+    },
+    "Update Required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Required"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mise à jour requise"
           }
         }
       }

@@ -15,6 +15,8 @@ struct RootView: View {
             if isLoaded {
                 if #available(iOS 26.0, *) {
                     PhoneView()
+                } else {
+                    UnsupportedOSView()
                 }
             }
         }
