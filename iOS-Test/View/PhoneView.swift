@@ -317,6 +317,7 @@ struct ContactsView: View {
 }
 
 // MARK: - 4. Keypad View
+@available(iOS 26.0, *)
 struct KeypadView: View {
     @Environment(\.localizationBundle) private var bundle
     @State private var number = ""
@@ -516,23 +517,19 @@ struct VoicemailView: View {
 }
 
 // MARK: - Keypad Button
+@available(iOS 26.0, *)
 struct KeypadButton: View {
     let main: String
     let sub: String
     var isSymbol: Bool = false
     let action: () -> Void
 
-    let lightGray = Color(red: 229/255, green: 229/255, blue: 229/255)
-    let darkGray  = Color(red: 50/255,  green: 50/255,  blue: 50/255)
-
-    @Environment(\.colorScheme) var colorScheme
-
     var body: some View {
         Button(action: action) {
             ZStack {
-                RoundedRectangle(cornerRadius: 39, style: .continuous)
-                    .fill(colorScheme == .dark ? darkGray : lightGray)
-                    .frame(width: 82, height: 78)
+                Color.clear
+                    .frame(width: 80, height: 80)
+                    .glassEffect(.regular, in: .circle)
                 VStack(spacing: 0) {
                     Text(main)
                         .font(.system(size: 34, weight: .regular))
