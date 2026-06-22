@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, system-ui, sans-serif;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <contact-detail-card id="card"></contact-detail-card>
+
+  <script>
+    class ContactDetailCard extends HTMLElement {
+      constructor() {
+        super();
+        this._data = null;
+        this.attachShadow({ mode: "open" });
+      }
+
+      /// Called from Swift via evaluateJavaScript after the page loads.
+      /// `data` shape: { name, logoURL, description, websiteURL }
+      render(data) {
+        this._data = data;
+        this._update();
+      }
+
+      connectedCallback() {
+        this._update();
+      }
+
+      _update() {
+        const d = this._data;
+        if (!d) {
+          this.shadowRoot.innerHTML = "";
+          return;
+        }
+
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              font-family: -apple-system, system-ui, sans-serif;
+            }
+            .card {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 32px 24px;
+              text-align: center;
+            }
+            .logo {
+              width: 88px;
+              height: 88px;
+              object-fit: contain;
+              margin-bottom: 16px;
+            }
+            .name {
+              font-size: 22px;
+              font-weight: 600;
+              color: #000;
+              margin: 0 0 8px 0;
+            }
+            .description {
+              font-size: 15px;
+              line-height: 1.4;
+              color: rgba(60, 60, 67, 0.6);
+              margin: 0 0 24px 0;
+              max-width: 320px;
+            }
+            @media (prefers-color-scheme: dark) {
+              .name { color: rgba(255, 255, 255, 0.92); }
+              .description { color: rgba(235, 235, 245, 0.6); }
+            }
+            .cta {
+              display: inline-block;
+              text-decoration: none;
+              background: #007AFF;
+              color: white;
+              font-size: 16px;
+              font-weight: 600;
+              padding: 12px 28px;
+              border-radius: 14px;
+              font-family: inherit;
+            }
+            .cta:active {
+              opacity: 0.7;
+            }
+          </style>
+          <div class="card">
+            ${d.logoURL ? `<img class="logo" src="${d.logoURL}" alt="">` : ""}
+            <p class="name">${d.name ?? ""}</p>
+            ${d.description ? `<p class="description">${d.description}</p>` : ""}
+            ${d.websiteURL ? `<a class="cta" href="${d.websiteURL}" target="_blank">Visit Website</a>` : ""}
+          </div>
+        `;
+      }
+    }
+
+    customElements.define("contact-detail-card", ContactDetailCard);
+
+    // Entry point Swift calls after injecting data, e.g.:
+    // webView.evaluateJavaScript("renderContact({...})")
+    function renderContact(data) {
+      document.getElementById("card").render(data);
+    }
+  </script>
+</body>
+</html>

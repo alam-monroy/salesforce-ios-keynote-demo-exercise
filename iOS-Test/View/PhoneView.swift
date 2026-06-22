@@ -60,59 +60,71 @@ struct FavoritesView: View {
 
     @Environment(\.localizationBundle) private var bundle
     @State private var callingContact: ContactConfig? = nil
+    @State private var contactForDetail: ContactConfig? = nil
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(contacts) { contact in
-                    Button {
-                        callingContact = contact
-                    } label: {
-                        HStack(spacing: 12) {
-                            AsyncImage(url: URL(string: contact.avatar ?? "")) { phase in
-                                switch phase {
-                                case .success(let image):
-                                    image.resizable().scaledToFill()
-                                        .frame(width: 45, height: 45)
-                                        .clipShape(Circle())
-                                default:
-                                    Circle()
-                                        .fill(Color.gray.opacity(0.35))
-                                        .frame(width: 46, height: 46)
-                                        .overlay(
-                                            Text(contact.name.prefix(2).uppercased())
-                                                .font(.system(size: 17, weight: .semibold))
-                                                .foregroundStyle(.white)
-                                        )
+                    HStack(spacing: 12) {
+                        Button {
+                            callingContact = contact
+                        } label: {
+                            HStack(spacing: 12) {
+                                AsyncImage(url: URL(string: contact.avatar ?? "")) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image.resizable().scaledToFill()
+                                            .frame(width: 45, height: 45)
+                                            .clipShape(Circle())
+                                    default:
+                                        Circle()
+                                            .fill(Color.gray.opacity(0.35))
+                                            .frame(width: 46, height: 46)
+                                            .overlay(
+                                                Text(contact.name.prefix(2).uppercased())
+                                                    .font(.system(size: 17, weight: .semibold))
+                                                    .foregroundStyle(.white)
+                                            )
+                                    }
                                 }
-                            }
-                            .frame(width: 46, height: 46)
+                                .frame(width: 46, height: 46)
 
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(contact.name)
-                                    .font(.system(size: 17, weight: .regular))
-                                    .foregroundStyle(.primary)
-                                HStack(spacing: 3) {
-                                    Image(systemName: "phone")
-                                        .font(.system(size: 11))
-                                        .foregroundStyle(.secondary)
-                                    Text(String(localized: "mobile", bundle: bundle))
-                                        .font(.system(size: 13))
-                                        .foregroundStyle(.secondary)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(contact.name)
+                                        .font(.system(size: 17, weight: .regular))
+                                        .foregroundStyle(.primary)
+                                    HStack(spacing: 3) {
+                                        Image(systemName: "phone")
+                                            .font(.system(size: 11))
+                                            .foregroundStyle(.secondary)
+                                        Text(String(localized: "mobile", bundle: bundle))
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(.secondary)
+                                    }
                                 }
+
+                                Spacer()
                             }
+                        }
+                        .buttonStyle(.plain)
 
-                            Spacer()
-
+                        Button {
+                            contactForDetail = contact
+                        } label: {
                             Image(systemName: "info.circle")
                                 .foregroundStyle(.blue)
                                 .font(.title2)
                         }
-                        .padding(.vertical, -2)
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
+                    .padding(.vertical, -2)
                     .listSectionSeparator(.hidden, edges: .top)
                 }
+            }
+            .sheet(item: $contactForDetail) { contact in
+                ContactDetailWebView(contact: contact)
+                    .presentationDetents([.medium])
             }
             .fullScreenCover(item: $callingContact) { contact in
                 CallView(
@@ -458,8 +470,8 @@ struct IOSButtonStyle: ButtonStyle {
 @available(iOS 26.0, *)
 #Preview("Favorites") {
     FavoritesView(contacts: [
-        ContactConfig(id: 1, name: "AARP",     avatar: "https://ui-avatars.com/api/?name=AARP&background=E11B22&color=fff&bold=true",   imageURL: nil),
-        ContactConfig(id: 2, name: "Tim Cook", avatar: "https://ui-avatars.com/api/?name=TC&background=0080F6&color=fff&bold=true",     imageURL: nil),
+        ContactConfig(id: 1, name: "AARP",     avatar: "https://ui-avatars.com/api/?name=AARP&background=E11B22&color=fff&bold=true",   imageURL: nil, description: nil, websiteURL: nil),
+        ContactConfig(id: 2, name: "Tim Cook", avatar: "https://ui-avatars.com/api/?name=TC&background=0080F6&color=fff&bold=true",     imageURL: nil, description: nil, websiteURL: nil),
     ])
 }
 

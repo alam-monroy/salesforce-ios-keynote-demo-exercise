@@ -21,6 +21,8 @@
 		62EBD0B92FA3D10A00EA2B93 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EBD0B82FA3D10A00EA2B93 /* AppLanguage.swift */; };
 		62EBD0BB2FA8F09800EA2B93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 62EBD0BA2FA8F09800EA2B93 /* Localizable.xcstrings */; };
 		7DEDC27C2FE8D13400AE2DA6 /* UnsupportedOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC27B2FE8D13300AE2DA6 /* UnsupportedOSView.swift */; };
+		7DEDC27E2FE999DB00AE2DA6 /* contact-detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 7DEDC27D2FE999DB00AE2DA6 /* contact-detail.html */; };
+		7DEDC2802FE99A2D00AE2DA6 /* ContactDetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC27F2FE99A2A00AE2DA6 /* ContactDetailWebView.swift */; };
 		FD92C01B64FC40DDB33DAB65 /* ringing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2CCD7783387A48C2B42C2B32 /* ringing.m4a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		62EBD0B82FA3D10A00EA2B93 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 		62EBD0BA2FA8F09800EA2B93 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		7DEDC27B2FE8D13300AE2DA6 /* UnsupportedOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsupportedOSView.swift; sourceTree = "<group>"; };
+		7DEDC27D2FE999DB00AE2DA6 /* contact-detail.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "contact-detail.html"; sourceTree = "<group>"; };
+		7DEDC27F2FE99A2A00AE2DA6 /* ContactDetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				18E24B252F3F7A21007B6764 /* Assets.xcassets */,
 				18E24B272F3F7A21007B6764 /* Preview Content */,
 				62EBD0BA2FA8F09800EA2B93 /* Localizable.xcstrings */,
+				7DEDC27D2FE999DB00AE2DA6 /* contact-detail.html */,
 			);
 			path = "iOS-Test";
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 		18E24B392F3F7AF4007B6764 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7DEDC27F2FE99A2A00AE2DA6 /* ContactDetailWebView.swift */,
 				18E24B422F437008007B6764 /* PhoneView.swift */,
 				18E24B402F3F7B42007B6764 /* RootView.swift */,
 				620674EC2F6DBE420031E1E4 /* CallView.swift */,
@@ -184,6 +190,7 @@
 			files = (
 				18E24B292F3F7A21007B6764 /* Preview Assets.xcassets in Resources */,
 				62EBD0BB2FA8F09800EA2B93 /* Localizable.xcstrings in Resources */,
+				7DEDC27E2FE999DB00AE2DA6 /* contact-detail.html in Resources */,
 				62B84DD12F62525F00045C3D /* Configs.json in Resources */,
 				18E24B262F3F7A21007B6764 /* Assets.xcassets in Resources */,
 				FD92C01B64FC40DDB33DAB65 /* ringing.m4a in Resources */,
@@ -207,6 +214,7 @@
 				62EBD0B92FA3D10A00EA2B93 /* AppLanguage.swift in Sources */,
 				7DEDC27C2FE8D13400AE2DA6 /* UnsupportedOSView.swift in Sources */,
 				18E24B222F3F7A1D007B6764 /* NativeApp.swift in Sources */,
+				7DEDC2802FE99A2D00AE2DA6 /* ContactDetailWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

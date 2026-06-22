@@ -180,7 +180,9 @@ private struct NoFeedbackButtonStyle: ButtonStyle {
             id: 1,
             name: "AARP",
             avatar: "https://ui-avatars.com/api/?name=AARP&background=E11B22&color=fff&bold=true",
-            imageURL: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80"
+            imageURL: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80",
+            description: nil,
+            websiteURL: nil
         ),
         onEnd: {}
     )

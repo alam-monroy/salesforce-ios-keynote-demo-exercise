@@ -6,7 +6,9 @@
             "id": 1,
             "name": "Canada Goose",
             "avatar": "https://ios-wrapper-test-kk-de916285ba09.herokuapp.com/resources/phone/WTNYC-Apr-2026/Canada-Goose-logo.png",
-            "imageURL": "https://ios-wrapper-test-kk-de916285ba09.herokuapp.com/resources/phone/WTNYC-Apr-2026/Contact-BG.png"
+            "imageURL": "https://ios-wrapper-test-kk-de916285ba09.herokuapp.com/resources/phone/WTNYC-Apr-2026/Contact-BG.png",
+            "description": "Premium outerwear engineered for the world's harshest climates, worn on expeditions from the Arctic to the Antarctic.",
+            "websiteURL": "https://www.canadagoose.com"
         }
     ]
 }

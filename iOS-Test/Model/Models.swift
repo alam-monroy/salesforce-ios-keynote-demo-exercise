@@ -17,4 +17,6 @@ struct ContactConfig: Codable, Identifiable {
     let name: String
     let avatar: String?
     let imageURL: String?
+    let description: String?
+    let websiteURL: String?
 }
