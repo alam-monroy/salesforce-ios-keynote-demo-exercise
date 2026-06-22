@@ -109,7 +109,7 @@ struct FavoritesView: View {
                         } label: {
                             Image(systemName: "info.circle")
                                 .foregroundStyle(.blue)
-                                .font(.title2)
+                                .font(.body)
                                 .padding(8)
                                 .background(Circle().fill(Color(uiColor: .systemGray6)))
                         }
@@ -210,7 +210,7 @@ struct RecentsView: View {
                                 .foregroundStyle(.gray)
                             Button(action: {}) {
                                 Image(systemName: "info.circle")
-                                    .font(.title2)
+                                    .font(.body)
                                     .foregroundStyle(.blue)
                                     .padding(8)
                                     .background(Circle().fill(Color(uiColor: .systemGray6)))
