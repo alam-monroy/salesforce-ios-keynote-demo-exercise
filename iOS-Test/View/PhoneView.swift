@@ -19,32 +19,27 @@ struct PhoneView: View {
                 preloadedImages: vm.contactImages
             )
             .tabItem {
-                Text("⭐️ " + String(localized: "Favorites", bundle: bundle))
-                    .padding(.vertical, 10)
+                Label(String(localized: "Favorites", bundle: bundle), systemImage: "star.fill")
             }
-
+            
             RecentsView()
                 .tabItem {
-                    Text("🕒 " + String(localized: "Recents", bundle: bundle))
-                        .padding(.vertical, 10)
+                    Label(String(localized: "Recents", bundle: bundle), systemImage: "clock.fill")
                 }
-
+            
             ContactsView(contacts: vm.contacts)
                 .tabItem {
-                    Text("👥 " + String(localized: "Contacts", bundle: bundle))
-                        .padding(.vertical, 10)
+                    Label(String(localized: "Contacts", bundle: bundle), systemImage: "person.crop.circle.fill")
                 }
-
+            
             KeypadView()
                 .tabItem {
-                    Text("🔢 " + String(localized: "Keypad", bundle: bundle))
-                        .padding(.vertical, 10)
+                    Label(String(localized: "Keypad", bundle: bundle), systemImage: "circle.grid.3x3.fill")
                 }
-
+            
             VoicemailView()
                 .tabItem {
-                    Text("📼 " + String(localized: "Voicemail", bundle: bundle))
-                        .padding(.vertical, 10)
+                    Label(String(localized: "Voicemail", bundle: bundle), systemImage: "mic.fill")
                 }
         }
         .tint(.blue)
