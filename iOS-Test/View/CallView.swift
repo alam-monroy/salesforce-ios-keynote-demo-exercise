@@ -137,7 +137,7 @@ struct CallView: View {
         switch callManager.state {
         case .ringing:   Text(String(localized: "Calling mobile...", bundle: bundle))
         case .connected: Text(callManager.timerString)
-        case .disconnected: Text(String(localized: "Call ended", bundle: bundle))
+        case .ended:     Text(String(localized: "Call ended", bundle: bundle))
         }
     }
 

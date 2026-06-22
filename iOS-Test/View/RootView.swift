@@ -14,7 +14,7 @@ struct RootView: View {
         Group {
             if isLoaded {
                 if #available(iOS 26.0, *) {
-                    PhoneVie()
+                    PhoneView()
                 }
             }
         }
