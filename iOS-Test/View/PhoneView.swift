@@ -394,27 +394,118 @@ struct KeypadView: View {
 // MARK: - 5. Voicemail View
 struct VoicemailView: View {
     @Environment(\.localizationBundle) private var bundle
+    @StateObject private var viewModel = VoicemailViewModel()
+
     var body: some View {
         NavigationStack {
-            VStack(spacing: 15) {
-                Spacer()
-                Text(String(localized: "Call Voicemail", bundle: bundle))
-                    .font(.headline)
-                    .foregroundStyle(.blue)
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 30)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color(uiColor: .systemGray6))
-                    )
-                Spacer()
-            }
-            .navigationTitle(String(localized: "Voicemail", bundle: bundle))
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(String(localized: "Greeting", bundle: bundle)) {}
+            content
+                .navigationTitle(String(localized: "Voicemail", bundle: bundle))
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(String(localized: "Greeting", bundle: bundle)) {}
+                    }
                 }
+        }
+        .task { viewModel.prepare() }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        switch viewModel.state {
+        case .idle:
+            promptState(
+                icon: "waveform",
+                title: String(localized: "Voicemail Summary", bundle: bundle),
+                message: String(localized: "Generate an AI summary of your last call.", bundle: bundle),
+                buttonTitle: String(localized: "Generate Summary", bundle: bundle)
+            ) { viewModel.generateSummary() }
+
+        case .noRecentCall:
+            promptState(
+                icon: "phone.down",
+                title: String(localized: "No Recent Calls", bundle: bundle),
+                message: String(localized: "Make a call first, then come back to generate a summary.", bundle: bundle),
+                buttonTitle: nil,
+                action: nil
+            )
+
+        case .loading:
+            VStack(spacing: 16) {
+                ProgressView()
+                Text(String(localized: "Generating summary…", bundle: bundle))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+        case .success(let transcript, let summary):
+            summaryState(transcript: transcript, summary: summary)
+
+        case .failure(let message):
+            promptState(
+                icon: "exclamationmark.triangle",
+                title: String(localized: "Something Went Wrong", bundle: bundle),
+                message: message,
+                buttonTitle: String(localized: "Try Again", bundle: bundle)
+            ) { viewModel.generateSummary() }
+        }
+    }
+
+    @ViewBuilder
+    private func promptState(
+        icon: String,
+        title: String,
+        message: String,
+        buttonTitle: String?,
+        action: (() -> Void)? = nil
+    ) -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 40))
+                .foregroundStyle(.secondary)
+            Text(title)
+                .font(.headline)
+            Text(message)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
+            if let buttonTitle, let action {
+                Button(buttonTitle, action: action)
+                    .buttonStyle(.borderedProminent)
+                    .padding(.top, 4)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    @ViewBuilder
+    private func summaryState(transcript: String, summary: String) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(String(localized: "Summary", bundle: bundle))
+                        .font(.headline)
+                    Text(summary)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(String(localized: "Transcript", bundle: bundle))
+                        .font(.headline)
+                    Text(transcript)
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                }
+
+                Button(String(localized: "Regenerate", bundle: bundle)) {
+                    viewModel.generateSummary()
+                }
+                .buttonStyle(.bordered)
+                .padding(.top, 8)
+            }
+            .padding(20)
         }
     }
 }

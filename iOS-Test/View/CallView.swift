@@ -124,6 +124,10 @@ struct CallView: View {
         }
         .onChange(of: callManager.state) { _, state in
             if state == .ended {
+                LastCallContext.save(
+                    contactName: contact.name,
+                    durationSeconds: callManager.elapsedSeconds
+                )
                 Task {
                     try? await Task.sleep(nanoseconds: 1_300_000_000)
                     onEnd()

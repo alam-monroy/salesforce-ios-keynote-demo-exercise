@@ -24,6 +24,9 @@
 		7DEDC27E2FE999DB00AE2DA6 /* contact-detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 7DEDC27D2FE999DB00AE2DA6 /* contact-detail.html */; };
 		7DEDC2802FE99A2D00AE2DA6 /* ContactDetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC27F2FE99A2A00AE2DA6 /* ContactDetailWebView.swift */; };
 		7DEDC2822FE9A3DB00AE2DA6 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DEDC2812FE9A3DB00AE2DA6 /* Secrets.plist */; };
+		7DEDC2842FE9A8DD00AE2DA6 /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC2832FE9A8DC00AE2DA6 /* ClaudeService.swift */; };
+		7DEDC2862FE9A91C00AE2DA6 /* LastCallContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC2852FE9A91B00AE2DA6 /* LastCallContext.swift */; };
+		7DEDC2882FE9A94B00AE2DA6 /* VoicemailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEDC2872FE9A94A00AE2DA6 /* VoicemailViewModel.swift */; };
 		FD92C01B64FC40DDB33DAB65 /* ringing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2CCD7783387A48C2B42C2B32 /* ringing.m4a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		7DEDC27D2FE999DB00AE2DA6 /* contact-detail.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "contact-detail.html"; sourceTree = "<group>"; };
 		7DEDC27F2FE99A2A00AE2DA6 /* ContactDetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailWebView.swift; sourceTree = "<group>"; };
 		7DEDC2812FE9A3DB00AE2DA6 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		7DEDC2832FE9A8DC00AE2DA6 /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
+		7DEDC2852FE9A91B00AE2DA6 /* LastCallContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCallContext.swift; sourceTree = "<group>"; };
+		7DEDC2872FE9A94A00AE2DA6 /* VoicemailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicemailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,7 @@
 		18E24B202F3F7A1D007B6764 /* iOS-Test */ = {
 			isa = PBXGroup;
 			children = (
+				7DEDC2832FE9A8DC00AE2DA6 /* ClaudeService.swift */,
 				18E24B392F3F7AF4007B6764 /* View */,
 				18E24B342F3F7AAC007B6764 /* ViewModel */,
 				18E24B2F2F3F7A45007B6764 /* Model */,
@@ -113,6 +120,8 @@
 		18E24B342F3F7AAC007B6764 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7DEDC2872FE9A94A00AE2DA6 /* VoicemailViewModel.swift */,
+				7DEDC2852FE9A91B00AE2DA6 /* LastCallContext.swift */,
 				62B84DE02F6D9C2300045C3D /* PhoneViewModel.swift */,
 				620674EA2F6DBE230031E1E4 /* CallManager.swift */,
 				62B84DD02F62525F00045C3D /* Configs.json */,
@@ -210,14 +219,17 @@
 			files = (
 				620674ED2F6DBE420031E1E4 /* CallView.swift in Sources */,
 				18E24B312F3F7A67007B6764 /* Models.swift in Sources */,
+				7DEDC2882FE9A94B00AE2DA6 /* VoicemailViewModel.swift in Sources */,
 				18E24B332F3F7A91007B6764 /* NetworkService.swift in Sources */,
 				18E24B412F3F7B42007B6764 /* RootView.swift in Sources */,
 				18E24B432F437008007B6764 /* PhoneView.swift in Sources */,
+				7DEDC2842FE9A8DD00AE2DA6 /* ClaudeService.swift in Sources */,
 				620674EB2F6DBE230031E1E4 /* CallManager.swift in Sources */,
 				62B84DE12F6D9C2300045C3D /* PhoneViewModel.swift in Sources */,
 				62EBD0B92FA3D10A00EA2B93 /* AppLanguage.swift in Sources */,
 				7DEDC27C2FE8D13400AE2DA6 /* UnsupportedOSView.swift in Sources */,
 				18E24B222F3F7A1D007B6764 /* NativeApp.swift in Sources */,
+				7DEDC2862FE9A91C00AE2DA6 /* LastCallContext.swift in Sources */,
 				7DEDC2802FE99A2D00AE2DA6 /* ContactDetailWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
