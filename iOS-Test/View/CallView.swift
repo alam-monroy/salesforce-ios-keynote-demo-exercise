@@ -7,28 +7,29 @@
 import SwiftUI
 import AVFoundation
 
+@available(iOS 26.0, *)
 struct CallView: View {
     let contact: ContactConfig
     var preloadedBackground: UIImage? = nil
     var onEnd: () -> Void
-
+    
     @Environment(\.localizationBundle) private var bundle
-
+    
     @StateObject private var callManager = CallManager()
     @State private var isSpeaker  = false
     @State private var isMuted    = false
     @State private var isFaceTime = false
     @State private var fetchedImage: UIImage? = nil
-
+    
     private var bgImage: UIImage? { preloadedBackground ?? fetchedImage }
-
+    
     var body: some View {
         GeometryReader { proxy in
             let w = proxy.size.width
             let h = proxy.size.height
             let safeTop = proxy.safeAreaInsets.top
             let safeBot = proxy.safeAreaInsets.bottom
-
+            
             ZStack {
                 // Background
                 Group {
@@ -43,7 +44,7 @@ struct CallView: View {
                     }
                 }
                 .frame(width: w, height: h)
-
+                
                 // Contact info
                 VStack(spacing: 3) {
                     callStatusText
@@ -59,11 +60,11 @@ struct CallView: View {
                 }
                 .padding(.top, safeTop - 330)
                 .frame(maxWidth: .infinity, alignment: .top)
-
+                
                 // Call controls
                 VStack(alignment: .leading, spacing: 20) {
                     VStack(spacing: 14) {
-                        HStack(spacing: 30) {
+                        HStack(spacing: 0) {
                             callButton(
                                 icon: isSpeaker ? "speaker.wave.3.fill" : "speaker.wave.2.fill",
                                 label: String(localized: "Audio", bundle: bundle),
@@ -82,27 +83,45 @@ struct CallView: View {
                             }
                         }
                         HStack(spacing: 0) {
-                            callButton(icon: "ellipsis", label: String(localized: "More", bundle: bundle), width: w / 3) {}
+                            callButton(
+                                icon: "ellipsis",
+                                label: String(
+                                    localized: "More",
+                                    bundle: bundle
+                                ),
+                                width: w / 3
+                            ) {}
                             Button {
-                                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                UIImpactFeedbackGenerator(style: .heavy)
+                                    .impactOccurred()
                                 callManager.endCall()
                             } label: {
                                 VStack(spacing: 8) {
                                     Image(systemName: "phone.down.fill")
-                                        .font(.system(size: 26, weight: .medium))
-                                        .foregroundStyle(.white)
-                                        .frame(width: 92, height: 84)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 42, style: .continuous)
-                                                .fill(Color.red)
+                                        .font(
+                                            .system(size: 26, weight: .medium)
                                         )
-                                    Text(String(localized: "End", bundle: bundle))
-                                        .font(.system(size: 13))
-                                        .foregroundStyle(.white.opacity(0.75))
+                                        .foregroundStyle(.white)
+                                        .frame(width: 84, height: 84)
+                                        .background(
+                                            Circle().fill(Color.red)
+                                        )
+                                    Text(
+                                        String(localized: "End", bundle: bundle)
+                                    )
+                                    .font(.system(size: 13))
+                                    .foregroundStyle(.white.opacity(0.75))
                                 }
                             }
-                            .frame(width: w / 2)
-                            callButton(icon: "circle.grid.3x3.fill", label: String(localized: "Keypad", bundle: bundle), width: w / 3) {}
+                            .frame(width: w / 3)
+                            callButton(
+                                icon: "circle.grid.3x3.fill",
+                                label: String(
+                                    localized: "Keypad",
+                                    bundle: bundle
+                                ),
+                                width: w / 3
+                            ) {}
                         }
                     }
                 }
@@ -135,7 +154,7 @@ struct CallView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     private var callStatusText: some View {
         switch callManager.state {
@@ -144,7 +163,7 @@ struct CallView: View {
         case .ended:     Text(String(localized: "Call ended", bundle: bundle))
         }
     }
-
+    
     @ViewBuilder
     private func callButton(icon: String, label: String, active: Bool = false, width: CGFloat, action: @escaping () -> Void) -> some View {
         Button {
@@ -155,12 +174,9 @@ struct CallView: View {
                 Image(systemName: icon)
                     .font(.system(size: 24, weight: .medium))
                     .foregroundStyle(active ? Color.black : .white)
-                    .frame(width: 92, height: 84)
-                    .contentShape(RoundedRectangle(cornerRadius: 42, style: .continuous))
-                    .background(
-                        RoundedRectangle(cornerRadius: 42, style: .continuous)
-                            .fill(Color.white.opacity(0.25))
-                    )
+                    .frame(width: 84, height: 84)
+                    .contentShape(Circle())
+                    .glassEffect(.regular, in: .circle)
                 Text(label)
                     .font(.system(size: 13))
                     .foregroundStyle(.white.opacity(0.75))
