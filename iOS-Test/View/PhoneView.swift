@@ -110,6 +110,8 @@ struct FavoritesView: View {
                             Image(systemName: "info.circle")
                                 .foregroundStyle(.blue)
                                 .font(.title2)
+                                .padding(8)
+                                .background(Circle().fill(Color(uiColor: .systemGray6)))
                         }
                         .buttonStyle(.plain)
                     }
@@ -133,9 +135,11 @@ struct FavoritesView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "Edit", bundle: bundle)) {}
+                        .tint(.primary)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {}) { Image(systemName: "plus") }
+                        .tint(.primary)
                 }
             }
             .overlay {
@@ -208,6 +212,8 @@ struct RecentsView: View {
                                 Image(systemName: "info.circle")
                                     .font(.title2)
                                     .foregroundStyle(.blue)
+                                    .padding(8)
+                                    .background(Circle().fill(Color(uiColor: .systemGray6)))
                             }
                         }
                     }
@@ -228,6 +234,7 @@ struct RecentsView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "Edit", bundle: bundle)) {}
+                        .tint(.primary)
                 }
             }
         }
@@ -298,9 +305,11 @@ struct ContactsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "Groups", bundle: bundle)) {}
+                        .tint(.primary)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {}) { Image(systemName: "plus") }
+                        .tint(.primary)
                 }
             }
         }
@@ -398,6 +407,7 @@ struct VoicemailView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(String(localized: "Greeting", bundle: bundle)) {}
+                            .tint(.primary)
                     }
                 }
         }
