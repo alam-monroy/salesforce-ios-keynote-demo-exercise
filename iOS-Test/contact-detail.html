@@ -102,7 +102,7 @@
             ${d.logoURL ? `<img class="logo" src="${d.logoURL}" alt="">` : ""}
             <p class="name">${d.name ?? ""}</p>
             ${d.description ? `<p class="description">${d.description}</p>` : ""}
-            ${d.websiteURL ? `<a class="cta" href="${d.websiteURL}" target="_blank">Visit Website</a>` : ""}
+            ${d.websiteURL ? `<a class="cta" href="${d.websiteURL}" target="_blank">${d.ctaLabel ?? "Visit Website"}</a>` : ""}
           </div>
         `;
       }

@@ -50,6 +50,7 @@ struct ContactDetailWebView: UIViewRepresentable {
                 "logoURL": contact.avatar,
                 "description": contact.description,
                 "websiteURL": contact.websiteURL,
+                "ctaLabel": String(localized: "Visit Website"),
             ]
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload.compactMapValues { $0 }),
                   let jsonString = String(data: jsonData, encoding: .utf8) else {
