@@ -63,65 +63,48 @@ struct CallView: View {
                 
                 // Call controls
                 VStack(alignment: .leading, spacing: 20) {
-                    VStack(spacing: 14) {
-                        HStack(spacing: 0) {
-                            callButton(
-                                icon: isSpeaker ? "speaker.wave.3.fill" : "speaker.wave.2.fill",
-                                label: String(localized: "Audio", bundle: bundle),
-                                active: isSpeaker,
-                                width: w / 3
-                            ) {
-                                isSpeaker.toggle()
-                                try? AVAudioSession.sharedInstance()
-                                    .overrideOutputAudioPort(isSpeaker ? .speaker : .none)
-                            }
-                            callButton(icon: "video.fill", label: String(localized: "FaceTime", bundle: bundle), active: isFaceTime, width: w / 3) {
-                                isFaceTime.toggle()
-                            }
-                            callButton(icon: "mic.slash.fill", label: String(localized: "Mute", bundle: bundle), active: isMuted, width: w / 3) {
-                                isMuted.toggle()
-                            }
-                        }
-                        HStack(spacing: 0) {
-                            callButton(
-                                icon: "ellipsis",
-                                label: String(
-                                    localized: "More",
-                                    bundle: bundle
-                                ),
-                                width: w / 3
-                            ) {}
-                            Button {
-                                UIImpactFeedbackGenerator(style: .heavy)
-                                    .impactOccurred()
-                                callManager.endCall()
-                            } label: {
-                                VStack(spacing: 8) {
-                                    Image(systemName: "phone.down.fill")
-                                        .font(
-                                            .system(size: 26, weight: .medium)
-                                        )
-                                        .foregroundStyle(.white)
-                                        .frame(width: 84, height: 84)
-                                        .background(
-                                            Circle().fill(Color.red)
-                                        )
-                                    Text(
-                                        String(localized: "End", bundle: bundle)
-                                    )
-                                    .font(.system(size: 13))
-                                    .foregroundStyle(.white.opacity(0.75))
+                    GlassEffectContainer(spacing: 14) {
+                        VStack(spacing: 14) {
+                            HStack(spacing: 0) {
+                                callButton(
+                                    icon: isSpeaker ? "speaker.wave.3.fill" : "speaker.wave.2.fill",
+                                    label: String(localized: "Audio", bundle: bundle),
+                                    active: isSpeaker,
+                                    width: w / 3
+                                ) {
+                                    isSpeaker.toggle()
+                                    try? AVAudioSession.sharedInstance()
+                                        .overrideOutputAudioPort(isSpeaker ? .speaker : .none)
+                                }
+                                callButton(icon: "video.fill", label: String(localized: "FaceTime", bundle: bundle), active: isFaceTime, width: w / 3) {
+                                    isFaceTime.toggle()
+                                }
+                                callButton(icon: "mic.slash.fill", label: String(localized: "Mute", bundle: bundle), active: isMuted, width: w / 3) {
+                                    isMuted.toggle()
                                 }
                             }
-                            .frame(width: w / 3)
-                            callButton(
-                                icon: "circle.grid.3x3.fill",
-                                label: String(
-                                    localized: "Keypad",
-                                    bundle: bundle
-                                ),
-                                width: w / 3
-                            ) {}
+                            HStack(spacing: 0) {
+                                callButton(icon: "ellipsis", label: String(localized: "More", bundle: bundle), width: w / 3) {}
+                                Button {
+                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    callManager.endCall()
+                                } label: {
+                                    VStack(spacing: 8) {
+                                        Image(systemName: "phone.down.fill")
+                                            .font(.system(size: 26, weight: .medium))
+                                            .foregroundStyle(.white)
+                                            .frame(width: 84, height: 84)
+                                            .background(
+                                                Circle().fill(Color.red)
+                                            )
+                                        Text(String(localized: "End", bundle: bundle))
+                                            .font(.system(size: 13))
+                                            .foregroundStyle(.white.opacity(0.75))
+                                    }
+                                }
+                                .frame(width: w / 3)
+                                callButton(icon: "circle.grid.3x3.fill", label: String(localized: "Keypad", bundle: bundle), width: w / 3) {}
+                            }
                         }
                     }
                 }
@@ -166,24 +149,23 @@ struct CallView: View {
     
     @ViewBuilder
     private func callButton(icon: String, label: String, active: Bool = false, width: CGFloat, action: @escaping () -> Void) -> some View {
-        Button {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            action()
-        } label: {
-            VStack(spacing: 8) {
-                Image(systemName: icon)
-                    .font(.system(size: 24, weight: .medium))
-                    .foregroundStyle(active ? Color.black : .white)
-                    .frame(width: 84, height: 84)
-                    .contentShape(Circle())
-                    .glassEffect(.regular, in: .circle)
-                Text(label)
-                    .font(.system(size: 13))
-                    .foregroundStyle(.white.opacity(0.75))
+            Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                action()
+            } label: {
+                VStack(spacing: 8) {
+                    Image(systemName: icon)
+                        .font(.system(size: 24, weight: .medium))
+                        .foregroundStyle(active ? Color.black : .white)
+                        .frame(width: 84, height: 84)
+                        .glassEffect(.clear, in: .circle)
+                    Text(label)
+                        .font(.system(size: 13))
+                        .foregroundStyle(.white.opacity(0.75))
+                }
             }
+            .frame(width: width)
         }
-        .frame(width: width)
-    }
 }
 
 private struct NoFeedbackButtonStyle: ButtonStyle {

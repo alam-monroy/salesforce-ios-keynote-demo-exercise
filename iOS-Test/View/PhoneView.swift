@@ -39,7 +39,7 @@ struct PhoneView: View {
             
             VoicemailView()
                 .tabItem {
-                    Label(String(localized: "Voicemail", bundle: bundle), systemImage: "mic.fill")
+                    Label(String(localized: "Voicemail", bundle: bundle), systemImage: "recordingtape")
                 }
         }
         .tint(.blue)
@@ -90,7 +90,7 @@ struct FavoritesView: View {
                                         .font(.system(size: 17, weight: .regular))
                                         .foregroundStyle(.primary)
                                     HStack(spacing: 3) {
-                                        Image(systemName: "phone")
+                                        Image(systemName: "phone.fill")
                                             .font(.system(size: 11))
                                             .foregroundStyle(.secondary)
                                         Text(String(localized: "mobile", bundle: bundle))
@@ -110,7 +110,7 @@ struct FavoritesView: View {
                             Image(systemName: "info.circle")
                                 .foregroundStyle(.blue)
                                 .font(.body)
-                                .padding(8)
+                                .padding(12)
                                 .background(Circle().fill(Color(uiColor: .systemGray6)))
                         }
                         .buttonStyle(.plain)
@@ -212,7 +212,7 @@ struct RecentsView: View {
                                 Image(systemName: "info.circle")
                                     .font(.body)
                                     .foregroundStyle(.blue)
-                                    .padding(8)
+                                    .padding(12)
                                     .background(Circle().fill(Color(uiColor: .systemGray6)))
                             }
                         }
